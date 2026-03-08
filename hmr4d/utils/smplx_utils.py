@@ -25,6 +25,7 @@ def make_smplx(type="neu_fullpose", **kwargs):
         bm_kwargs = {
             "model_type": "smplx",
             "gender": "neutral",
+            "num_betas": 10,
             "num_pca_comps": 12,
             "flat_hand_mean": False,
         }

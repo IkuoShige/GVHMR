@@ -95,8 +95,12 @@ class BodyModelSMPLX(nn.Module):
             reye_pose = torch.zeros([batch_size, 3], dtype=dtype, device=device)
         if expression is None:
             expression = torch.zeros([batch_size, self.bm.num_expression_coeffs], dtype=dtype, device=device)
+        elif expression.shape[-1] > self.bm.num_expression_coeffs:
+            expression = expression[..., :self.bm.num_expression_coeffs]
         if betas is None:
             betas = torch.zeros([batch_size, self.bm.num_betas], dtype=dtype, device=device)
+        elif betas.shape[-1] > self.bm.num_betas:
+            betas = betas[..., :self.bm.num_betas]
         if transl is None:
             transl = torch.zeros([batch_size, 3], dtype=dtype, device=device)
 
